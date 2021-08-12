@@ -7,6 +7,7 @@ const PART_TIME = 1;
 const FULL_TIME = 2;
 const PART_TIME_HRS = 4;
 const FULL_TIME_HRS = 8;
+const MAX_WORKING_DAYS_IN_MONTH = 20;
 
 //genrate random value either 0 or 1
 let randomValue = Math.floor(Math.random() *10)%2; 
@@ -36,7 +37,12 @@ function getWorkHours()
 }
 
 //calculate total wage based on partTime or full time
-//calling the function
-let empHrs =getWorkHours();
+//Uc4
+let empHrs = 0;
+for(let i=0;i<MAX_WORKING_DAYS_IN_MONTH;i++)
+{
+    empHrs += getWorkHours();
+}
+
 let totalWage = empHrs*WAGE_PER_HR;
-console.log(`Uc3:\nTotal Wage = ${totalWage}`);
+console.log(`Uc4:\nTotal Wage = ${totalWage}`);
