@@ -18,21 +18,25 @@ console.log((ABSENT==randomValue)?"Employee is Absent":"Employee is present");
 
 //UC2
 debugger;
-let empHrs = 0;
-//Return values 1,2,0
-let checkTimings = Math.floor(Math.random() *10)%3; 
-switch(checkTimings)
+
+//function to check  whether emp is present full time or parttime
+function getWorkHours()
 {
-    case PART_TIME:
-        empHrs = PART_TIME_HRS;
-        break;
-    case FULL_TIME:
-        empHrs = FULL_TIME_HRS;
-        break;
-    default:
-        break;
-        
+    //Return values 1,2,0
+    let checkTimings = Math.floor(Math.random() *10)%3; 
+    switch(checkTimings)
+    {
+        case PART_TIME:
+            return PART_TIME_HRS;
+        case FULL_TIME:
+            return FULL_TIME_HRS;
+        default:
+            return 0;
+    }
 }
+
 //calculate total wage based on partTime or full time
+//calling the function
+let empHrs =getWorkHours();
 let totalWage = empHrs*WAGE_PER_HR;
-console.log(`Uc2:\nTotal Wage = ${totalWage}`);
+console.log(`Uc3:\nTotal Wage = ${totalWage}`);
