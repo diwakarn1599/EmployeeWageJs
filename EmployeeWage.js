@@ -39,20 +39,34 @@ function getWorkHours()
 
 //calculate total wage based on partTime or full time
 //Uc4
-let empHrs = 0;
+let totalEmpHrs = 0;
 for(let i=0;i<MAX_WORKING_DAYS_IN_MONTH;i++)
 {
-    empHrs += getWorkHours();
+    totalEmpHrs += getWorkHours();
 }
-
-//Uc5
-let day=0;
-empHrs =0;
-while(day++ <MAX_WORKING_DAYS_IN_MONTH && empHrs<=MAX_WORKING_HRS_IN_MONTH)
+let calculateWage = (empHrs) =>
 {
-    empHrs += getWorkHours();
+    return empHrs*WAGE_PER_HR;
 }
-console.log(`Uc5:\ntotal days = ${day-1}`);
-console.log(`total emp hours = ${empHrs}`);
-let totalWage = empHrs*WAGE_PER_HR;
+//Uc5
+//Uc6 - refactor the code to save daily wage
+let day=0;
+totalEmpHrs =0;
+//Array to store daily wage of employee
+let dailyEmpWageArr = new Array();
+while(day++ <MAX_WORKING_DAYS_IN_MONTH && totalEmpHrs<=MAX_WORKING_HRS_IN_MONTH)
+{
+    let empHrs = getWorkHours();
+    totalEmpHrs += empHrs;
+    dailyEmpWageArr.push(calculateWage(empHrs));
+
+}
+console.log("UC6");
+console.log("Daily Emp wages");
+console.log(dailyEmpWageArr.toString());
+console.log(`total days = ${day-1}`);
+console.log(`total emp hours = ${totalEmpHrs}`);
+let totalWage = calculateWage(totalEmpHrs);
 console.log(`Total Wage = ${totalWage}`);
+
+
