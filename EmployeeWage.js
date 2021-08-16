@@ -54,12 +54,16 @@ let day=0;
 totalEmpHrs =0;
 //Array to store daily wage of employee
 let dailyEmpWageArr = new Array();
+//Uc8 - map to store wages
+let dailyEmpWageMap = new Map();
 while(day++ <MAX_WORKING_DAYS_IN_MONTH && totalEmpHrs<=MAX_WORKING_HRS_IN_MONTH)
 {
     let empHrs = getWorkHours();
     totalEmpHrs += empHrs;
+    //pushing into the array
     dailyEmpWageArr.push(calculateWage(empHrs));
-
+    //setting the map
+    dailyEmpWageMap.set(day+1,calculateWage(empHrs));
 }
 
 console.log("UC6");
@@ -120,7 +124,6 @@ let getPartTimeWorkingDayWages = (dailyWage) => dailyWage.includes("80");//retur
 console.log(dayWithDailyWageMapArr.some(getPartTimeWorkingDayWages)?`It Has some part time wages`:`It doesn't Has some part time wages`);
 
 //Uc7G
-
 console.log("Get the number of days emp worked - reduce");
 let getNumberOfDaysEmpWorked = (numOfDays,dailyWage) =>
 {   
@@ -129,5 +132,8 @@ let getNumberOfDaysEmpWorked = (numOfDays,dailyWage) =>
     return numOfDays;
 } 
 console.log(`Total number of days emp worked = ${dailyEmpWageArr.reduce(getNumberOfDaysEmpWorked,0)}`);
+//Uc8 - Using Map
+console.log("Uc -8 \nStore day with daily wage using map");
+console.log("Total Wage using map : "+Array.from(dailyEmpWageMap.values()).reduce(totalWageUsingReduce,0));
 
 
