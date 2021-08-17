@@ -63,7 +63,7 @@ while(day++ <MAX_WORKING_DAYS_IN_MONTH && totalEmpHrs<=MAX_WORKING_HRS_IN_MONTH)
     //pushing into the array
     dailyEmpWageArr.push(calculateWage(empHrs));
     //setting the map
-    dailyEmpWageMap.set(day+1,calculateWage(empHrs));
+    dailyEmpWageMap.set(day,calculateWage(empHrs));
 }
 
 console.log("UC6");
@@ -135,5 +135,23 @@ console.log(`Total number of days emp worked = ${dailyEmpWageArr.reduce(getNumbe
 //Uc8 - Using Map
 console.log("Uc -8 \nStore day with daily wage using map");
 console.log("Total Wage using map : "+Array.from(dailyEmpWageMap.values()).reduce(totalWageUsingReduce,0));
+//Uc9- get all type of workingdays
+let nonWorkingDays = new Array();
+let partWorkingDays = new Array();
+let FullWorkingDays = new Array();
+console.log("Uc9- get all type of workingdays");
+dailyEmpWageMap.forEach((value,key,map) =>
+{
+    if(value==160)
+        FullWorkingDays.push(key);
+    else if(value==80)
+        partWorkingDays.push(key);
+    else
+        nonWorkingDays.push(key);
 
+});
+console.log(dailyEmpWageMap);
+console.log(`part time working days ${partWorkingDays.toString()}`);
+console.log(`full time working days ${FullWorkingDays.toString()}`);
+console.log(`non working days ${nonWorkingDays.toString()}`);
 
